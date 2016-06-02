@@ -1,7 +1,8 @@
 # This tag use ubuntu 14.04
-FROM phusion/baseimage:0.9.16
+FROM redis:alpine
 
-MAINTAINER Johan Andersson <Grokzen@gmail.com>
+#MAINTAINER Johan Andersson <Grokzen@gmail.com>
+MAINTAINER Eloy Coto <eloy.coto@gmail.com>
 
 # Some Environment Variables
 ENV HOME /root
@@ -16,17 +17,14 @@ ENV LC_ALL     en_US.UTF-8
 RUN apt-get -y update && apt-get install -y software-properties-common python-software-properties
 
 # Add global apt repos
-RUN add-apt-repository -y "deb http://archive.ubuntu.com/ubuntu precise universe" && \
-    add-apt-repository -y "deb http://archive.ubuntu.com/ubuntu precise main restricted universe multiverse" && \
-    add-apt-repository -y "deb http://archive.ubuntu.com/ubuntu precise-updates main restricted universe multiverse" && \
-    add-apt-repository -y "deb http://archive.ubuntu.com/ubuntu precise-backports main restricted universe multiverse"
-RUN apt-get update && apt-get -y upgrade
+RUN apk add --no-cache git ruby supervisor
+# RUN apt-get update && apt-get -y upgrade
 
-# Install system dependencies
-RUN apt-get install -y gcc make g++ build-essential libc6-dev tcl git supervisor ruby
+# # Install system dependencies
+# RUN apt-get install -y gcc make g++ build-essential libc6-dev tcl git supervisor ruby
 
-# Must be installed seperate from ruby or it will complain about broken package
-RUN apt-get install -y rubygems
+# # Must be installed seperate from ruby or it will complain about broken package
+# RUN apt-get install -y rubygems
 
 # Install ruby dependencies so we can bootstrap the cluster via redis-trib.rb
 RUN gem install redis
