@@ -36,4 +36,5 @@ RUN chmod 755 /start.sh
 
 EXPOSE 7000 7001 7002 7003 7004 7005 7006 7007
 
-CMD ["/bin/bash", "/start.sh"]
+CMD ["/bin/sh", "/start.sh"]
+ENTRYPOINT ["/bin/sh", "/start.sh"]
