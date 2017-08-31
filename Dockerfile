@@ -2,7 +2,8 @@
 FROM redis:alpine
 
 #MAINTAINER Johan Andersson <Grokzen@gmail.com>
-MAINTAINER Eloy Coto <eloy.coto@gmail.com>
+# MAINTAINER Eloy Coto <eloy.coto@gmail.com>
+MAINTAINER Pedro J Rodriguez Tavarez <pedro@pjrt.co>
 
 # Some Environment Variables
 ENV HOME /root
